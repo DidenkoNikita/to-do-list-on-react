@@ -1,0 +1,20 @@
+.board {
+    border: none;
+    width: 300px;
+    height: 400px;
+    background-color: #212121;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.board:hover {
+    background-color: #2f2f2f;
+}
+
+.boardName {
+    color: white;
+    align-self: center;
+    margin-top: 10px;
+}
