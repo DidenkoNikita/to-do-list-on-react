@@ -1,20 +1,30 @@
+.area{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
 .board {
     border: none;
-    width: 300px;
-    height: 400px;
-    background-color: #212121;
+    width: 305px;
+    min-height: 125px;
+    background-color: rgba(167, 189, 255, 0.096);
+    border: 2px solid rgba(153, 163, 255, 0.1);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.board:hover {
-    background-color: #2f2f2f;
-}
-
 .boardName {
-    color: white;
+    color: black;
     align-self: center;
     margin-top: 10px;
+    margin-bottom: 35px;
+    font-family: 'Montserrat';
+}
+
+.taskArea {
+    width: 300px;
+    height: 300px;
 }

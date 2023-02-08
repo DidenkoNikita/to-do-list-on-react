@@ -1,5 +1,9 @@
 body {
-  background-color: #151414;
+  background-color: white;
   width: 100vw;
   height: 100vh;
+  font-family: 'Montserrat';
+  overflow-y: auto;
+  overflow-x: hidden;
+
 }

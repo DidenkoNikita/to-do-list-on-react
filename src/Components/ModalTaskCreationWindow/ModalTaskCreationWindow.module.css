@@ -1,0 +1,59 @@
+.taskCreationWindow {
+  width: 280px;
+  height: 375px;
+  border-radius: 15px;
+  border: 2px solid black;
+  background-color: #212121;
+}
+
+.taskCreationWindow::backdrop {
+  backdrop-filter: blur(10px);
+}
+
+.taskCreationWindow:hover {
+  background-color: #2f2f2f;
+}
+
+.taskShape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.taskName {
+  margin: 50px auto 0 auto;
+  border-radius: 5px;
+  border: 1px solid white;
+  padding: 5px;
+  background-color: transparent;
+  color: white;
+  font-family: 'Montserrat';
+  font-size: 12px;
+  width: 190px;
+}
+
+.descriptionTask {
+  border-radius: 5px;
+  border: 1px solid white;
+  background-color: transparent;
+  padding: 5px;
+  color: white;
+  font-family: 'Montserrat';
+  font-size: 12px;
+}
+
+.taskName::placeholder,
+.descriptionTask::placeholder {
+    color: white;
+    border-color: white;
+    padding-left: 5px;
+    font-family: 'Montserrat';
+    font-size: 12px;
+}
+
+.containerForButtons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}

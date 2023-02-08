@@ -1,0 +1,3 @@
+const ADDING_MANY_TASK = "ADDING_MANY_TASK";
+
+export default ADDING_MANY_TASK;

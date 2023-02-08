@@ -1,0 +1,3 @@
+const ADDING_MANY_BOARD = "ADDING_MANY_BOARD";
+
+export default ADDING_MANY_BOARD;

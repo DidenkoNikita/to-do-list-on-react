@@ -1,10 +1,13 @@
-import Board from '../Board/Board';
+import React from 'react';
+import BoardsArea from '../Board/Board';
+
 import css from './BoardAddArea.module.css';
 
-const BoardAddArea = () => {
+const BoardAddArea = ({ boards, filter, query }) => {
+
     return (
         <div className={css.area}>
-            <Board />
+            <BoardsArea  filter={filter} />
         </div>
     );
 }

@@ -1,0 +1,31 @@
+.header {
+  width: 101vw;
+  height: 100px;
+  /* border-bottom: 2px solid white; */
+  display: flex;
+  /* margin-right: 30px; */
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  box-shadow: 0 2px 0 0 white;
+}
+
+.headerArea {
+  display: flex;
+  width: 50vw;
+  justify-content: space-evenly;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.logo {
+  width: 100px;
+  margin-left: 30px;
+}
