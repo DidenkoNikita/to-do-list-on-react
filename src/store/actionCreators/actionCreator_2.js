@@ -1,10 +1,10 @@
 import ADDING_A_TASK from "../actions/addingATask";
 
-const id = () => window.crypto.randomUUID(); 
+const ID = () => window.crypto.randomUUID(); 
 
-const AddingTask = (userId) => ({
+const AddingTask = (id) => ({
   type: ADDING_A_TASK,
-  payload: {id: id(), completed: false, title: '', userId}
+  payload: {idT: ID(), completed: false, titleT: '', id}
 });
 
 export default AddingTask;

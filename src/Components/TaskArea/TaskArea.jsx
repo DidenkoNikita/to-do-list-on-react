@@ -4,20 +4,20 @@ import { useSelector } from 'react-redux';
 import Task from '../Task/Task';
 import css from './TaskArea.module.css';
 
-const TaskArea = ({ userId}) => {
+const TaskArea = ({id}) => {
 
   const tasks = useSelector(state => state.tasks)
     .filter((task) => {
-      return task.userId === userId;
+      return task.id === id;
     });
 
   return (
     <ol className={css.taskArea}>
-      {tasks.map(({id, completed, title}) =>
+      {tasks.map(({idT, completed, titleT}) =>
         <Task 
-          key={id}
+          key={idT}
           completed={completed}
-          title={title}
+          title={titleT}
         />
       )}
     </ol>

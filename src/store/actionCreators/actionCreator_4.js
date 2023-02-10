@@ -1,8 +1,8 @@
 import ADDING_MANY_TASK from "../actions/addingManyTask";
 
-const AddingManyTask = (completed, id, title, userId) => ({
+const AddingManyTask = (idT, completed, titleT, id) => ({
   type: ADDING_MANY_TASK,
-  payload: {id, completed, title, userId}
+  payload: {idT, completed, titleT, id}
 });
 
 export default AddingManyTask;

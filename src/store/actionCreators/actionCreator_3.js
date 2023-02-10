@@ -1,11 +1,11 @@
 import ADDING_MANY_BOARD from "../actions/addingManyBoard";
 
-let i = 1;
+// let i = 1;
 
-const AddingManyBoard = (userId) => {
+const AddingManyBoard = (id, title, tasks) => {
   return {
     type: ADDING_MANY_BOARD,
-    payload: { id: userId, title: 'Доска ' + i++, tasks: [], userId },
+    payload: { id, title, tasks },
   }
 };
 

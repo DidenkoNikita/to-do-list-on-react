@@ -3,7 +3,7 @@ import React from 'react';
 import css from './Task.module.css'
 
 
-const Task = ({completed, title}) => {
+const Task = ({completed, titleT}) => {
 
   return (
     <li className={css.task}>
@@ -15,7 +15,7 @@ const Task = ({completed, title}) => {
         {/* <strong className={css.sequenceNumber}>
           {counter}
         </strong> */}
-        {title}
+        {titleT}
       </span>
       <button className={css.delete}>
         &times;

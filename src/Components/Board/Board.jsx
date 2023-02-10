@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import Button from '../Button/Button';
 import TaskArea from '../TaskArea/TaskArea';
@@ -20,7 +19,7 @@ if(!filter) return null
                             <span className={css.boardName}>
                                 {title}
                             </span>
-                            <TaskArea userId={id} />
+                            <TaskArea id={id} />
                             <Button 
                                 text='Добавить задачу' 
                                 onClick={() => {addTask(id)}}

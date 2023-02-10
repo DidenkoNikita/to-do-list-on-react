@@ -6,15 +6,17 @@ export const fetchTodos = () => {
   
   return async (dispatch) => {
     const options = {
-      method: 'GET'
+      method: 'GET',
+      mode: "no-cors",
     };
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/user/1/todos', options);
+      const response = await fetch('http://127.0.0.1:7000/boards', options);
       const data = await response.json();
       await data.forEach(element => {
-        let {completed, id, title, userId} = element
-        dispatch(AddingManyBoard(userId))
-        dispatch(AddingManyTask(completed, id, title, userId))
+        let {id, title, tasks} = element
+        let {idT, completed, titleT} = tasks
+        dispatch(AddingManyBoard(id, title, tasks))
+        dispatch(AddingManyTask(idT, completed, titleT))
       })
     }
      catch (err) {

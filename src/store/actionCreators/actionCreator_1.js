@@ -6,7 +6,7 @@ export let i = 1;
 
 const AddingBoard = (payload) => ({
   type: ADDING_A_BOARD,
-  payload: {id: id(), title: 'Доска ' + i++, tasks: [], userId: id}
+  payload: {id: id(), title: 'Доска ' + i++, tasks: []}
 });
    
 
