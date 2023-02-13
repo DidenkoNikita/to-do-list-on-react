@@ -3,7 +3,6 @@ import React from 'react';
 import Button from '../Button/Button';
 import css from './ModalTaskCreationWindow.module.css'
 
-
 const ModalTaskCreationWindow =(props, onCreate) => {
 
 const {state} = props

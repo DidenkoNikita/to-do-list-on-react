@@ -3,8 +3,7 @@ import BoardsArea from '../Board/Board';
 
 import css from './BoardAddArea.module.css';
 
-const BoardAddArea = ({ boards, filter, query }) => {
-
+const BoardAddArea = ({ filter }) => {
     return (
         <div className={css.area}>
             <BoardsArea  filter={filter} />

@@ -10,9 +10,7 @@ import css from './TodoList.module.css';
 
 const TodoList = () => {
   let boards = useSelector(state => state.boards);
-
   const [ search, setSearch ] = useState('');
-
   const [query, setQuery ] = useState('')
 
   const handleSubmit = (event) => {
@@ -21,15 +19,20 @@ const TodoList = () => {
     setQuery(form.search.value)
   }
 
-let filter = boards.filter( (board) => {
-  return board.title.toLowerCase().includes(query.toLocaleLowerCase())
-})
+  let filter = boards.filter( (board) => {
+    return board.title.toLowerCase().includes(query.toLocaleLowerCase())
+  })
 
-  console.log('query',query)
   return (
     <div className={css.region}>
-      <Button onClick={() => {addBoard()}}/>
-      <FilterTasks search={search} setSearch={setSearch} handleSubmit={handleSubmit} />
+      <Button 
+        onClick={() => {addBoard()}}
+        />
+      <FilterTasks 
+        search={search} 
+        setSearch={setSearch} 
+        handleSubmit={handleSubmit} 
+        />
       <BoardAddArea filter={filter} />
       <ModalTaskCreationWindow />
     </div>
