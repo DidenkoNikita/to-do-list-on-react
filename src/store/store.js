@@ -22,8 +22,8 @@ export const addManyBoards = () => {
   store.dispatch(fetchTodos());
 }
 
-export const addManyTasks = () => {
-  store.dispatch(AddingManyTask());
+export const addManyTasks = (id) => {
+  store.dispatch(AddingManyTask(id));
 }
 
 export default store;

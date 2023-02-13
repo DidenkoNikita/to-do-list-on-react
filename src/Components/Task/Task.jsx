@@ -8,25 +8,25 @@ const Task = ({id}) => {
       tasks.filter((task) => {
         return task.id === id;
       })
-
       return (
-        tasks.map(({idT, completed, titleT}) => {
-              console.log('fuck::', idT, completed, titleT)
-              return (
-                <li className={css.task} key={idT}>
-                  <span className={completed === false ? css.notCompleted : css.done}>
-                    <input
+        <ol className={css.taskArea}>
+          {tasks.map(({idT, completed, titleT}) => {
+            return (
+              <li className={css.task} key={idT} >
+                <span className={completed === false ? css.notCompleted : css.done}>
+                  <input
                     type='checkbox' 
                     className={css.checkBox}  
                     />
                     {titleT}
-                  </span>
+                </span>
                 <button className={css.delete}>
                   &times;
                 </button>
               </li>
-        );
-        })
+            );
+          })}
+        </ol>
       )
 
 }

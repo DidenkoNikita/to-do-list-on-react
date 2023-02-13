@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Button from '../Button/Button';
-import TaskArea from '../TaskArea/TaskArea';
 import ModalTaskCreationWindow from '../ModalTaskCreationWindow/ModalTaskCreationWindow';
 
 import css from './Board.module.css';
 import { addTask } from '../../store/store';
+import Task from '../Task/Task';
 
 const BoardsArea = ({  filter }) => {
     let key = 1;
@@ -18,7 +18,7 @@ const BoardsArea = ({  filter }) => {
                         <span className={css.boardName}>
                             {title}
                         </span>
-                        <TaskArea id={id} />
+                        <Task id={id}/>
                         <Button 
                             text='Добавить задачу' 
                             onClick={() => {addTask(id)}}

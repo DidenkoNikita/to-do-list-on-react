@@ -21,12 +21,12 @@ function reducer(state, action) {
         return {
           ...state,
           boards: [...state.boards, action.payload]
-        }
+        };
 
         case ADDING_MANY_TASK:
-        return {
-          ...state,
-          tasks: [...state.tasks, action.payload]
+          return {
+            ...state,
+            tasks: [...state.tasks, action.payload]
         };
 
       default: return state;

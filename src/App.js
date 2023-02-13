@@ -7,13 +7,11 @@ import AboutUs from './Components/AboutUs/AboutUs';
 import Header from './Components/Header/Header';
 import OurProjects from './Components/OurProjects/OurProjects';
 import TodoList from './Components/TodoList/TodoList';
-import { addManyBoards, addManyTasks } from './store/store';
+import { addManyBoards } from './store/store';
 
 
 const App = () => {  
   useEffect(() => {addManyBoards()}, [])
-
-  useEffect(() => {addManyTasks()}, [])
 
   return (
     <div className='region'>
