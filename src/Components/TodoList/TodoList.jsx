@@ -19,7 +19,7 @@ const TodoList = () => {
     setQuery(form.search.value)
   }
 
-  let filter = boards.filter( (board) => {
+  let filter = boards.filter((board) => {
     return board.title.toLowerCase().includes(query.toLocaleLowerCase())
   })
 

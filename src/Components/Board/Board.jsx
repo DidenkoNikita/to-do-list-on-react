@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 import ModalTaskCreationWindow from '../ModalTaskCreationWindow/ModalTaskCreationWindow';
 
 import css from './Board.module.css';
-import { addTask } from '../../store/store';
+import { addTask, removeBoard } from '../../store/store';
 import Task from '../Task/Task';
 
 const BoardsArea = ({  filter }) => {
@@ -19,11 +19,17 @@ const BoardsArea = ({  filter }) => {
                             <span className={css.boardName}>
                                 {title}
                             </span>
-                            <img
-                                src='https://cdn-icons-png.flaticon.com/512/8345/8345018.png' 
-                                className={css.deleted}
-                                alt='-'
-                                />
+                            <button 
+                                className={css.deletedButton}
+                                onClick={() => {removeBoard(id)}}
+                                >
+                                <img
+                                    src='https://cdn-icons-png.flaticon.com/512/8345/8345018.png' 
+                                    className={css.deleted}
+                                    alt='-'
+                                    // onClick={console.log('click')}
+                                    />
+                            </button>
                         </div>
                         <Task id={id}/>
                         <Button 

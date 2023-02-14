@@ -1,6 +1,7 @@
 import { id as randomId } from "../actionCreators/actionCreator_1";
 import AddingManyBoard from "../actionCreators/actionCreator_3";
 import AddingManyTask from "../actionCreators/actionCreator_4";
+import RemoveBoard from "../actionCreators/actionCreator_5";
 
 // let url = 'http://127.0.0.1:7000/boards';
 let i = 0;
@@ -43,10 +44,29 @@ export const recordingBoardDataOnServer = () => {
       console.log('recordingBoardDataOnServer', err);
     }
   }
-  // dispatch(AddingManyBoard(id, title, tasks));
 }
 
-// recordingBoardDataOnServer('http://127.0.0.1:7000/boards', { "id": id(), "title": 'Доска ' + i++, tasks: [] })
-//   .then((data) => {
-//     console.log(data);
-//   });
+export const removeDataBoards = (id) => {
+let ID = id;
+  return async (dispatch) => {
+    try {
+      const response = await fetch('http://127.0.0.1:7000/boards', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"id": ID})
+      });
+      const data = await response.json();
+      console.log(data);
+      // const { ID } = data;
+      // dispatch(RemoveBoard(ID));
+      const { id } = data;
+      dispatch(RemoveBoard(id));
+    }
+    catch (err) {
+      console.log('removeDataBoards', err);
+    }
+  }
+  // dispatch(AddingManyBoard(id, title, tasks));
+}
