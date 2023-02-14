@@ -15,9 +15,16 @@ const BoardsArea = ({  filter }) => {
             {filter.map(({id, title}) => { 
                 return (
                     <div className={css.board} key={key++}>
-                        <span className={css.boardName}>
-                            {title}
-                        </span>
+                        <div className={css.headerArea}>
+                            <span className={css.boardName}>
+                                {title}
+                            </span>
+                            <img
+                                src='https://cdn-icons-png.flaticon.com/512/8345/8345018.png' 
+                                className={css.deleted}
+                                alt='-'
+                                />
+                        </div>
                         <Task id={id}/>
                         <Button 
                             text='Добавить задачу' 
