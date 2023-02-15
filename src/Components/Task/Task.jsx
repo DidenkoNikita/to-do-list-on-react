@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import css from './Task.module.css'
 
 const Task = ({id}) => {
-  const tasks = useSelector(state => state.tasks);
-      tasks.filter((task) => {
-        return task.id === id;
+  const tasks = useSelector(state => state.tasks)
+  .filter((task) => {
+      return id === task.id;
       })
       return (
         <ol className={css.taskArea}>

@@ -1,5 +1,4 @@
 import ADDING_A_BOARD from "../actions/addingABoard";
-
 export const id = () => window.crypto.randomUUID(); 
 
 export let i = 1;
