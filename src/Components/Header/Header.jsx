@@ -27,6 +27,14 @@ const Header = () => {
             style={({ isActive }) => ({ color: isActive ? "#21A6FF" : "white" })}>
               Наши проекты :
           </NavLink>
+        <button 
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload();
+          }}
+        >
+          Выйти из учётной записи
+        </button>
         </div>
     </div>
   );

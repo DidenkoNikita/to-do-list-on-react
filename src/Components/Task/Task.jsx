@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { completedTask, removeTask } from '../../store/store';
 
 import css from './Task.module.css'
 
 const Task = ({id}) => {
+  // useEffect
   const tasks = useSelector(state => state.tasks)
-  .filter((task) => {
+    .filter((task) => {
       return id === task.id;
-      })
+    })
       return (
         <ol className={css.taskArea}>
           {tasks.map(({idT, completed, titleT}) => {
@@ -17,10 +19,14 @@ const Task = ({id}) => {
                   <input
                     type='checkbox' 
                     className={css.checkBox}  
+                    onClick={() => completedTask(idT, completed, titleT, id)}
                     />
                     {titleT}
                 </span>
-                <button className={css.delete}>
+                <button 
+                  className={css.delete}
+                  onClick={() => removeTask(idT)}
+                  >
                   &times;
                 </button>
               </li>

@@ -1,9 +1,7 @@
 import { legacy_createStore as createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-// import AddingTask from './actionCreators/actionCreator_2';
-// import AddingManyTask from './actionCreators/actionCreator_4';
-import { addingTasks, fetchTasks, fetchTodos, recordingBoardDataOnServer, removeDataBoards } from './asyncActions/todos';
+import { addingTasks, asyncCompletedTasks, fetchTasks, fetchTodos, recordingBoardDataOnServer, removeDataBoards, removeTasks } from './asyncActions/todos';
 import initialState from './initialState';
 import reducer from './reducers/reduser_1';
 
@@ -27,7 +25,14 @@ export const addManyBoards = () => {
   store.dispatch(fetchTasks());
 }
 
-// export const addManyTasks = () => {
-// }
+export const removeTask = (idT) => {
+  store.dispatch(removeTasks(idT));
+  console.log('remove tasks');
+}
+
+export const completedTask = (idT, completed, titleT, id) => {
+  store.dispatch(asyncCompletedTasks(idT, completed, titleT, id));
+  console.log('completed::idT::', idT, completed, titleT, id);
+}
 
 export default store;
