@@ -158,38 +158,63 @@ export const signUpUser = (login, password) => {
         },
         body: JSON.stringify({userId: randomId(), login, password})
       });
-      const token = await response.json();
-      console.log(token);
-      localStorage.setItem('token', JSON.stringify(token));
+      const {refreshToken, accessToken} = await response.json();
+      console.log('refreshToken::', refreshToken);
+      console.log('accessToken::', accessToken);
+      localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
+      localStorage.setItem('accessToken', JSON.stringify(accessToken));
     }
     catch (err) {
-      console.log('mlkldfk',login, password);
       console.log('createUser::', err);
+
     }
   }
 }
 
-  export const profileUser = (login, password) => {
-    // const token = JSON.parse(localStorage.getItem('token'));
-    return async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:7000/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({login, password})
-        });
-        // const data = await response.json();
-        // const { id, title, tasks } = data;
-        // console.log('нихуя оно работает');
-        // dispatch(AddingManyBoard(id, title, tasks));
-        const token = await response.json();
-        console.log(token);
-        localStorage.setItem('token', JSON.stringify(token));
-      }
-      catch (err) {
-        console.log('profileUser::', err);
-      }
+export const profileUser = (login, password) => {
+  const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+  const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+  const httpHeaders = {
+    Authorization: `Bearer ${accessToken}`,
+    AuthorizationTwo: `Bearer ${refreshToken}`,
+    'Content-Type': 'application/json'
+  }
+
+  const myHeaders = new Headers(httpHeaders);
+  
+  return async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:7000/login', {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify({login, password})
+      });
+      const data = await response.json();
+      const accessToken = data;
+      // console.log('token::', token)
+      localStorage.setItem('accessToken', JSON.stringify(accessToken));
+    } catch (err) {
+      console.log('profileUser::', err);
     }
   }
+}
+
+
+  // export const profileUser = (login, password) => {
+  //   // const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
+  //   return async (dispatch) => {
+  //     try {
+  //       const response = await myHeaders.post('http://127.0.0.1:7000/login', {login, password, refreshToken})
+  //       const data = await response.json();
+  //       const { id, title, tasks } = data;
+  //       console.log('нихуя оно работает');
+  //       dispatch(AddingManyBoard(id, title, tasks));
+  //       // const token = await response.json();
+  //       // console.log(token);
+  //       // localStorage.setItem('token', JSON.stringify(token));
+  //     }
+  //     catch (err) {
+  //       console.log('profileUser::', err);
+  //     }
+  //   }
+  // }

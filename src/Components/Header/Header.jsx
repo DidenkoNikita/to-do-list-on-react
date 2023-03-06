@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import css from './Header.module.css'
 import Logo from "./Logo";
@@ -10,30 +10,25 @@ const Header = () => {
       <Logo />
         <div className={css.headerArea}>
           <NavLink 
-            to='/toDoList' 
+            to='/home/toDoList' 
             className={css.link}
             style={({ isActive }) => ({ color: isActive ? "#21A6FF" : "white" })}>
               Список дел
           </NavLink>
           <NavLink 
-            to='/aboutUs' 
+            to='/home/aboutUs' 
             className={css.link}
             style={({ isActive }) => ({ color: isActive ? "#21A6FF" : "white" })}>
               О нас :
           </NavLink>
           <NavLink 
-            to='/ourProjects' 
+            to='/home/ourProjects' 
             className={css.link}
             style={({ isActive }) => ({ color: isActive ? "#21A6FF" : "white" })}>
               Наши проекты :
           </NavLink>
-        <button 
-          onClick={() => {
-            localStorage.clear();
-            window.location.reload();
-          }}
-        >
-          Выйти из учётной записи
+        <button >
+          <Link to='/' >Выйти из учётной записи</Link>
         </button>
         </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { profileUser, signUpUser } from "../../store/asyncActions/todos";
 
 import css from './RegistrationForm.module.css'
@@ -7,7 +8,7 @@ const RegistrationForm = () => {
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
    return (
-    <form className={css.form}>
+    <div className={css.form}>
       <input 
         type='text' 
         onChange={e => setLogin(e.target.value)}
@@ -24,14 +25,14 @@ const RegistrationForm = () => {
         onClick={profileUser(login, password)}
         className={css.button}
         >
-          Войти
+          <Link to='/home'>Войти</Link>
       </button>
       <button
         onClick={signUpUser(login, password)}
       >
-        Зарегистрироваться
+        <Link to='/home'>Регистрация</Link>
       </button>
-    </form>
+    </div>
   );
 }
 
