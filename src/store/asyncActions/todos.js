@@ -9,14 +9,21 @@ let i = 1;
 let j = 1;
 export let dataFromBoard = JSON.stringify({ "id": randomId(), "title": 'Доска ' + i++, tasks: [] });
 
-export const fetchTodos = () => { 
+export const fetchTodos = () => {
+  const idBoard = JSON.parse(localStorage.getItem('id_board')); 
   return async (dispatch) => {
     try {
-      const response = await fetch('http://127.0.0.1:7000/boards');
+      const response = await fetch('http://127.0.0.1:7000/read_boards', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"idBoard": idBoard})
+      });
       const data = await response.json();
       data.forEach(element => {
-        let {id, title, tasks} = element;
-        dispatch(AddingManyBoard(id, title, tasks));
+        let {id, title} = element;
+        dispatch(AddingManyBoard(id, title));
       })
     }
      catch (err) {
@@ -25,13 +32,21 @@ export const fetchTodos = () => {
 }
 
 export const fetchTasks = () => { 
+  const idBoard = JSON.parse(localStorage.getItem('id_board'));
+  const idUser = JSON.parse(localStorage.getItem('id_user'));
   return async (dispatch) => {
     try {
-      const response = await fetch('http://127.0.0.1:7000/tasks');
+      const response = await fetch('http://127.0.0.1:7000/read_tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"idBoard": idBoard, "idUser": idUser})
+      });
       const tasks = await response.json();
       tasks.forEach(task => {
-        let {idT, completed, titleT, id} = task;
-          dispatch(AddingManyTask(idT, completed, titleT, id));
+        let {id, completed, title, idBoard} = task;
+          dispatch(AddingManyTask(id, completed, title, idBoard));
         })
       } catch (err) {
     }
@@ -39,6 +54,7 @@ export const fetchTasks = () => {
 }
 
 export const recordingBoardDataOnServer = () => {
+  const idUser = JSON.parse(localStorage.getItem('id_user'));
   return async (dispatch) => {
     try {
       const response = await fetch('http://127.0.0.1:7000/boards', {
@@ -46,11 +62,12 @@ export const recordingBoardDataOnServer = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"id": randomId(), "title": 'Доска ' + j++, "tasks": []})
+        body: JSON.stringify({"title": 'Доска ' + j++, "idUser": idUser})
       });
       const data = await response.json();
-      const { id, title, tasks } = data;
-      dispatch(AddingManyBoard(id, title, tasks));
+      const { id, title } = data;
+      localStorage.setItem('id_board', JSON.stringify(id));
+      dispatch(AddingManyBoard(id, title));
     }
     catch (err) {
       console.log('recordingBoardDataOnServer', err);
@@ -80,7 +97,9 @@ let ID = id;
 }
 
 export const addingTasks = (id) => {
-  let ID = id;
+  const idBoard = JSON.parse(localStorage.getItem('id_board'));
+  const idUser = JSON.parse(localStorage.getItem('id_user'));
+  const body = JSON.stringify({"title": 'Задача', "idBoard": idBoard, "idUser": idUser})
   return async (dispatch) => {
     try {
       const response = await fetch('http://127.0.0.1:7000/tasks', {
@@ -88,11 +107,11 @@ export const addingTasks = (id) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"idT": randomId(), completed: false, "titleT": 'Задача', id: ID})
+        body: body
       });
       const data = await response.json();
-      const { idT, completed, titleT, id } = data;
-      dispatch(AddingManyTask(idT, completed, titleT, id));
+      const { id, completed, title, idBoard } = data;
+      dispatch(AddingManyTask( id, completed, title, idBoard ));
     }
     catch (err) {
       console.log('addin', err);
@@ -156,13 +175,14 @@ export const signUpUser = (login, password) => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({userId: randomId(), login, password})
+        body: JSON.stringify({login, password})
       });
-      const {refreshToken, accessToken} = await response.json();
+      const {refreshToken, accessToken, id} = await response.json();
       console.log('refreshToken::', refreshToken);
       console.log('accessToken::', accessToken);
       localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
       localStorage.setItem('accessToken', JSON.stringify(accessToken));
+      localStorage.setItem('id_user', JSON.stringify(id));
     }
     catch (err) {
       console.log('createUser::', err);
@@ -198,23 +218,3 @@ export const profileUser = (login, password) => {
     }
   }
 }
-
-
-  // export const profileUser = (login, password) => {
-  //   // const refreshToken = JSON.parse(localStorage.getItem('refreshToken'));
-  //   return async (dispatch) => {
-  //     try {
-  //       const response = await myHeaders.post('http://127.0.0.1:7000/login', {login, password, refreshToken})
-  //       const data = await response.json();
-  //       const { id, title, tasks } = data;
-  //       console.log('нихуя оно работает');
-  //       dispatch(AddingManyBoard(id, title, tasks));
-  //       // const token = await response.json();
-  //       // console.log(token);
-  //       // localStorage.setItem('token', JSON.stringify(token));
-  //     }
-  //     catch (err) {
-  //       console.log('profileUser::', err);
-  //     }
-  //   }
-  // }
