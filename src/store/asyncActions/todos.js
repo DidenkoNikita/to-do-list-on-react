@@ -128,7 +128,7 @@ export const removeTasks = (idT) => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({"idT": ID})
+          body: JSON.stringify({"id": ID})
         });
         const data = await response.json();
         const { idT } = data;
@@ -148,12 +148,12 @@ export const asyncCompletedTasks = (idT, completed, titleT, id) => {
     console.log('prev::data', ID, Completed, TitleT, Id);
       return async (dispatch) => {
         try {
-          const response = await fetch('http://127.0.0.1:7000/tasks', {
-            method: 'PUT',
+          const response = await fetch('http://127.0.0.1:7000/tasks_completed', {
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idT: ID, completed: Completed, titleT: TitleT, id: Id})
+            body: JSON.stringify({id: ID, completed: Completed, board_id: Id})
           });
           const data = await response.json();
           const { idT, completed, titleT, id} = data;
